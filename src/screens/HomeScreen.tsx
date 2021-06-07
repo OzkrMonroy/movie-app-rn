@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, FlatList, ScrollView, Text, View } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
 import { useMovies } from '../hooks/useMovies';
 import { Spinner } from '../components/Spinner';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -10,7 +10,7 @@ import { HorizontalSlider } from '../components/HorizontalSlider';
 const { width: windowWith } = Dimensions.get('window');
 
 export const HomeScreen = () => {
-  const { moviesInTheaters, isLoading } = useMovies();
+  const { moviesInTheaters, popularMovies, topRated, upcoming, isLoading } = useMovies();
   const { top } = useSafeAreaInsets();
 
   return (
@@ -29,12 +29,12 @@ export const HomeScreen = () => {
                 inactiveSlideOpacity={0.8}
               />
             </View>
-            <HorizontalSlider title="En cine" movies={moviesInTheaters}/>
+            <HorizontalSlider title="Populares" movies={popularMovies}/>
+            <HorizontalSlider title="Mejores calificadas" movies={topRated}/>
+            <HorizontalSlider title="Pronto en cines" movies={upcoming}/>
           </View>
         </ScrollView>
       )}
     </View>
   )
 }
-
-// https://github.com/meliorence/react-native-snap-carousel
