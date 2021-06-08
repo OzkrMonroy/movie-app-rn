@@ -2,6 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { RootStackParams } from '../navigation/StackNavigation'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const heightScreen = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailsScreen'>{}
@@ -13,14 +14,19 @@ export const DetailsScreen = ({ route }: Props) => {
   return (
     <ScrollView>
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri }}
-          style={styles.posterImage}
-        />
+        <View style={styles.imageBorder}>
+          <Image
+            source={{ uri }}
+            style={styles.posterImage}
+          />
+        </View>
       </View>
-      <View>
-        <Text>{movie.original_title}</Text>
-        <Text>{movie.title}</Text>
+      <View style={styles.movieTitleContainer}>
+        <Text style={styles.originalTitle}>{movie.original_title}</Text>
+        <Text style={styles.title}>{movie.title}</Text>
+      </View>
+      <View style={styles.movieTitleContainer}>
+        <Icon name='star-outline' color='gray' size={20}/>
       </View>
     </ScrollView>
   )
@@ -40,6 +46,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  imageBorder: {
+    flex: 1,
+    borderBottomEndRadius: 25,
+    borderBottomStartRadius: 25,
     overflow: 'hidden',
   },
   posterImage: {
