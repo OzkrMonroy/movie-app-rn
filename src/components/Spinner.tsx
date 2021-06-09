@@ -1,10 +1,15 @@
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 
-export const Spinner = () => {
+interface Props {
+  size: number;
+  top?: number;
+}
+
+export const Spinner = ({ size, top=0 }: Props) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-      <ActivityIndicator color='red' size={100}/>
+    <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', marginTop: top}}>
+      <ActivityIndicator color='red' size={size}/>
     </View>
   )
 }

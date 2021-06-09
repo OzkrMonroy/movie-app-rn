@@ -16,7 +16,7 @@ export const HomeScreen = () => {
   return (
     <View>
       {isLoading ? (
-        <Spinner />
+        <Spinner size={100}/>
       ) : (
         <ScrollView>
           <View style={{ marginTop: top }}>

@@ -4,6 +4,8 @@ import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-nat
 import { RootStackParams } from '../navigation/StackNavigation'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { Spinner } from '../components/Spinner';
+import { MovieDetails } from '../components/MovieDetails';
 
 const heightScreen = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailsScreen'>{}
@@ -28,7 +30,10 @@ export const DetailsScreen = ({ route }: Props) => {
         <Text style={styles.title}>{movie.title}</Text>
       </View>
       <View style={styles.movieTitleContainer}>
-        <Icon name='star-outline' color='gray' size={20}/>
+        {isLoading 
+          ? <Spinner size={35} top={10}/>
+          : <MovieDetails movieDetails={movieDetails!} cast={cast}/>
+        }
       </View>
     </ScrollView>
   )
