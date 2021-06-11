@@ -8,6 +8,7 @@ import Carousel from 'react-native-snap-carousel';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { GradientBackground } from '../components/GradientBackground';
 import ImageColors from 'react-native-image-colors';
+import { getPosterColors } from '../helpers/getColors';
 
 const { width: windowWith } = Dimensions.get('window');
 
@@ -19,7 +20,7 @@ export const HomeScreen = () => {
     const movieSelected = moviesInTheaters[slideIndex];
     const uri = `https://image.tmdb.org/t/p/w500${movieSelected.poster_path}`;
 
-    const colors = await ImageColors.getColors(uri, {});
+    const [ primary, secondary ] = await getPosterColors(uri);
   }
 
   return (
