@@ -29,7 +29,7 @@ export const DetailsScreen = ({ route, navigation }: Props) => {
         <Text style={styles.originalTitle}>{movie.original_title}</Text>
         <Text style={styles.title}>{movie.title}</Text>
       </View>
-      <View style={styles.movieTitleContainer}>
+      <View>
         {isLoading 
           ? <Spinner size={35} top={10}/>
           : <MovieDetails movieDetails={movieDetails!} cast={cast}/>
@@ -37,7 +37,7 @@ export const DetailsScreen = ({ route, navigation }: Props) => {
       </View>
       <View style={styles.backButton}>
         <TouchableOpacity onPress={() => navigation.pop()}>
-          <Icon name='arrow-back-outline' color='white' size={75}/>
+          <Icon name='arrow-back-outline' color='white' size={50}/>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
   },
   movieTitleContainer: {
     marginHorizontal: 20,
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 10
   },
   originalTitle: {
     fontSize: 16,
@@ -82,8 +83,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    zIndex: 10,
-    top: 30,
-    left: 20,
+    zIndex: 999,
+    elevation: 10,
+    top: 8,
+    left: 10,
   }
 });

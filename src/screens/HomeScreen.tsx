@@ -14,12 +14,12 @@ export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {isLoading ? (
         <Spinner size={100}/>
       ) : (
         <ScrollView>
-          <View style={{ marginTop: top }}>
+          <View style={{ marginTop: top + 20}}>
             <View style={{ height: 440 }}>
               <Carousel
                 data={moviesInTheaters}

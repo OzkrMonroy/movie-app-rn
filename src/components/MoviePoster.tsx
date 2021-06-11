@@ -16,7 +16,7 @@ export const MoviePoster = ({ movie, width = 300, height = 420, marginHorizontal
   
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('DetailsScreen', movie)}>
-      <View style={{...styles.imageContainer, width, height, marginHorizontal, paddingBottom: 20, paddingHorizontal: 7}}>
+      <View style={{...styles.imageContainer, width, height, marginHorizontal}}>
         <Image source={{ uri }} style={ styles.image}/>
       </View>
     </TouchableOpacity>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
-    elevation: 5,
+    elevation: 8,
     overflow: 'hidden',
   },
   image: {
