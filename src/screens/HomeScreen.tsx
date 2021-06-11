@@ -7,12 +7,20 @@ import { MoviePoster } from '../components/MoviePoster';
 import Carousel from 'react-native-snap-carousel';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { GradientBackground } from '../components/GradientBackground';
+import ImageColors from 'react-native-image-colors';
 
 const { width: windowWith } = Dimensions.get('window');
 
 export const HomeScreen = () => {
   const { moviesInTheaters, popularMovies, topRated, upcoming, isLoading } = useMovies();
   const { top } = useSafeAreaInsets();
+
+  const getPosterSelected = async (slideIndex: number) => {
+    const movieSelected = moviesInTheaters[slideIndex];
+    const uri = `https://image.tmdb.org/t/p/w500${movieSelected.poster_path}`;
+
+    const colors = await ImageColors.getColors(uri, {});
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -29,6 +37,7 @@ export const HomeScreen = () => {
                   sliderWidth={windowWith}
                   itemWidth={300}
                   inactiveSlideOpacity={0.8}
+                  onSnapToItem={slideIndex => getPosterSelected(slideIndex)}
                 />
               </View>
               <HorizontalSlider title="Populares" movies={popularMovies}/>
