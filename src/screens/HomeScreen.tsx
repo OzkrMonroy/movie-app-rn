@@ -7,20 +7,30 @@ import { MoviePoster } from '../components/MoviePoster';
 import Carousel from 'react-native-snap-carousel';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { GradientBackground } from '../components/GradientBackground';
-import ImageColors from 'react-native-image-colors';
 import { getPosterColors } from '../helpers/getColors';
+import { useContext } from 'react';
+import { GradientContext } from '../context/GradientContext';
+import { useEffect } from 'react';
 
 const { width: windowWith } = Dimensions.get('window');
 
 export const HomeScreen = () => {
   const { moviesInTheaters, popularMovies, topRated, upcoming, isLoading } = useMovies();
   const { top } = useSafeAreaInsets();
+  const { changeCurrentColors } = useContext(GradientContext);
+
+  useEffect(() => {
+    if(moviesInTheaters.length > 0){
+      getPosterSelected(0)
+    }
+  }, [moviesInTheaters]);
 
   const getPosterSelected = async (slideIndex: number) => {
     const movieSelected = moviesInTheaters[slideIndex];
     const uri = `https://image.tmdb.org/t/p/w500${movieSelected.poster_path}`;
 
-    const [ primary, secondary ] = await getPosterColors(uri);
+    const [ primary = '#084F6A', secondary = '#75CEDB' ] = await getPosterColors(uri);
+    changeCurrentColors({primary, secondary});
   }
 
   return (
