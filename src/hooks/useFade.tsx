@@ -7,7 +7,7 @@ export const useFade = () => {
   const fadeIn = (callback?: Function) => {
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 300,
+      duration: 50,
       useNativeDriver: true,
     }).start(() => callback ? callback() : null);
   }
